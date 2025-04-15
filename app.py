@@ -39,7 +39,7 @@ def true_thickness_ratio(incidence_angle):
 # --- Streamlit UI ---
 st.title("Drillhole Angle of Incidence and True Thickness Calculator")
 
-plunge = st.slider("Drillhole Plunge (°) (negative is up)", -90, 90, 55)
+plunge = st.slider("Drillhole Dip (° - Positive is Down)", -45, 90, 55)
 
 # Add multiple geological planes
 st.subheader("Geological Planes (Strike / Dip)")
@@ -84,7 +84,7 @@ secax = ax.secondary_yaxis('right',
     functions=(true_thickness_ratio,
                lambda r: np.degrees(np.arcsin(np.clip(r, 0, 1)))))
 secax.set_ylabel("True Thickness Ratio")
-secax.set_yticks(0, 1.01, 0.1)
+secax.set_yticks(np.arragne(0, 1.01, 0.1))
 ax.legend(loc="upper right", frameon=True)
 
 ax.text(0.03, 0.90, f"Drill Hole Dip: {plunge}°", transform=ax.transAxes,
