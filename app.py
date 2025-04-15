@@ -58,7 +58,7 @@ for i in range(n_planes):
     with col1:
         strike = st.number_input(f"Strike of Plane {i+1} (°)", 0, 360, value=strike_default, key=f"strike_{i}")
     with col2:
-        dip = st.number_input(f"Dip of Plane {i+1} (°)", -0, 90, value=dip_default, key=f"dip_{i}")
+        dip = st.number_input(f"Dip of Plane {i+1} (°)", 0, 90, value=dip_default, key=f"dip_{i}")
 
     planes.append((strike, dip))
 
@@ -84,7 +84,7 @@ secax = ax.secondary_yaxis('right',
     functions=(true_thickness_ratio,
                lambda r: np.degrees(np.arcsin(np.clip(r, 0, 1)))))
 secax.set_ylabel("True Thickness Ratio")
-sexax.set_yticks(0, 1.01, 0.1)
+secax.set_yticks(0, 1.01, 0.1)
 ax.legend(loc="upper right", frameon=True)
 
 ax.text(0.03, 0.90, f"Drill Hole Dip: {plunge}°", transform=ax.transAxes,
