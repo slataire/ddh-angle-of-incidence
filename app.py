@@ -87,10 +87,10 @@ secax.set_ylabel("True Thickness Ratio")
 secax.set_yticks(np.arange(0, 1.01, 0.1))
 ax.legend(loc="upper right", frameon=True)
 
-ax.text(0.03, 0.90, f"Drill Hole Dip: {plunge}°", transform=ax.transAxes,
+ax.text(0.025, 0.95, f"Drill Hole Dip: {plunge}°", transform=ax.transAxes,
         fontsize=9, verticalalignment='top', bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.5))
 
-fig.text(0.98, 0.02, "App by E. Slater", fontsize=9, color="gray",
+fig.text(0.93, 0.03, "App by E. Slater", fontsize=9, color="gray",
          ha='right', va='bottom', alpha=0.7)
 
 st.pyplot(fig)
