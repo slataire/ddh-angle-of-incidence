@@ -74,6 +74,14 @@ for i, (strike, dip) in enumerate(planes):
 
 
 ax.set_title("Angle of Incidence and True Thickness Ratio vs Drillhole Azimuth")
+
+with st.expander("Show Explanation"):
+    st.markdown("""
+    - This app calculates the angle of incidence between a drill hole of fixed dip across a range of azimuths and planar geological structures. It then converts this angle to true thickness ratio.
+    - **Angle of indicence** is the minimum angle between the drill hole and the geological plane. This is equivalent to the angle to core axis of a drill intercept.
+    - **True thickness ratio** is the factor one can multiple the intercept legth by to get the true thickness of the structure.
+    - Degative dips point down. Positive dips point up.
+
 ax.set_xlabel("Drillhole Azimuth (°)")
 ax.set_xlim(0, 360)
 ax.set_ylim(0, 90)
