@@ -37,9 +37,9 @@ def true_thickness_ratio(incidence_angle):
     return np.sin(np.radians(incidence_angle))
 
 # --- Streamlit UI ---
-st.title("Drillhole Angle of Incidence Visualizer")
+st.title("Drillhole Angle of Incidence and True Thickness Calculator")
 
-plunge = st.slider("Drillhole Plunge (°)", 0, 90, 55)
+plunge = st.slider("Drillhole Plunge (°) (negative is up)", -90, 90, 55)
 
 # Add multiple geological planes
 st.subheader("Geological Planes (Strike / Dip)")
@@ -58,7 +58,7 @@ for i in range(n_planes):
     with col1:
         strike = st.number_input(f"Strike of Plane {i+1} (°)", 0, 360, value=strike_default, key=f"strike_{i}")
     with col2:
-        dip = st.number_input(f"Dip of Plane {i+1} (°)", -90, 90, value=dip_default, key=f"dip_{i}")
+        dip = st.number_input(f"Dip of Plane {i+1} (°)", -0, 90, value=dip_default, key=f"dip_{i}")
 
     planes.append((strike, dip))
 
@@ -84,13 +84,13 @@ secax = ax.secondary_yaxis('right',
     functions=(true_thickness_ratio,
                lambda r: np.degrees(np.arcsin(np.clip(r, 0, 1)))))
 secax.set_ylabel("True Thickness Ratio")
-
+sexax.set_yticks(0, 1.01, 0.1)
 ax.legend(loc="upper right", frameon=True)
 
-ax.text(0.02, 0.95, f"Plunge: {plunge}°", transform=ax.transAxes,
+ax.text(0.03, 0.90, f"Drill Hole Dip: {plunge}°", transform=ax.transAxes,
         fontsize=9, verticalalignment='top', bbox=dict(boxstyle='round,pad=0.3', fc='white', alpha=0.5))
 
-fig.text(0.98, 0.02, "App by E. Slater", fontsize=8, color="gray",
-         ha='right', va='bottom', alpha=0.5)
+fig.text(0.98, 0.02, "App by E. Slater", fontsize=9, color="gray",
+         ha='right', va='bottom', alpha=0.7)
 
 st.pyplot(fig)
